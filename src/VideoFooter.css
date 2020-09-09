@@ -17,3 +17,37 @@
 .videoFooter__text > p {
   padding-bottom: 20px;
 }
+
+.videoFooter__ticker {
+  display: flex;
+  align-items: center;
+}
+
+.videoFooter__icon {
+  /* position: absolute; */
+}
+
+.videoFooter__ticker > .ticker {
+  flex: 0.6;
+  /* width: 60%;
+  margin-left: 30px;
+  height: fit-content; */
+  margin-left: 10px;
+}
+
+@keyframes spinTheRecord {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.videoFooter__record {
+  animation: spinTheRecord infinite 5s linear;
+  height: 50px;
+  filter: invert(1);
+  position: absolute;
+  right: 20px;
+}
