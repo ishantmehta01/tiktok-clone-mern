@@ -1,51 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Video from "./Video";
 import "./App.css";
+import axios from "./axios";
 
 function App() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await axios.get("v2/posts");
+      setPosts(response.data);
+      return response;
+    }
+    fetchPosts();
+  }, []);
+
   return (
     <div className="app">
       <div className="app__videos">
-        <Video
-          src="http://techslides.com/demos/sample-videos/small.mp4"
-          id="1"
-          channel="ishantmehta"
-          description="This is lovely"
-          song="99 PROBLEMS but React ain't any"
-          likes={100}
-          messages={48}
-          shares={12}
-        />
-        <Video
-          src="https://dms.licdn.com/playlist/C4E05AQE6lgFGo7xrcA/mp4-720p-30fp-crf28/0?e=1599742800&v=beta&t=rjpd5fcvGZ50_SlARs5z5Uq4ZGhiTZ7yZ-CnFMstaxI"
-          id="2"
-          channel="ishantmehta"
-          description="This is lovely"
-          song="99 PROBLEMS but React ain't any"
-          likes={100}
-          messages={48}
-          shares={12}
-        />
-        <Video
-          src="http://techslides.com/demos/sample-videos/small.mp4"
-          id="3"
-          channel="ishantmehta"
-          description="This is lovely"
-          song="99 PROBLEMS but React ain't any"
-          likes={100}
-          messages={48}
-          shares={12}
-        />
-        <Video
-          src="https://dms.licdn.com/playlist/C4E05AQE6lgFGo7xrcA/mp4-720p-30fp-crf28/0?e=1599742800&v=beta&t=rjpd5fcvGZ50_SlARs5z5Uq4ZGhiTZ7yZ-CnFMstaxI"
-          id="4"
-          channel="ishantmehta"
-          description="This is lovely"
-          song="99 PROBLEMS but React ain't any"
-          likes={100}
-          messages={48}
-          shares={12}
-        />
+        {posts.map(p => (
+          <Video key={p.src} {...p} />
+        ))}
       </div>
     </div>
   );
