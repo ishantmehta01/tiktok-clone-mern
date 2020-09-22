@@ -13,6 +13,7 @@ function VideoFooter({ channel, description, song }) {
           <MusicNoteIcon className="videoFooter__icon" />
           <Ticker mode="smooth">{() => <p>{song}</p>}</Ticker>
           <img
+            alt=""
             className="videoFooter__record"
             src="https://static.thenounproject.com/png/934821-200.png"
           />
